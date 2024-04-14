@@ -1,0 +1,14 @@
+:root {
+    --mainBG: #233142;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--mainBG);
+}

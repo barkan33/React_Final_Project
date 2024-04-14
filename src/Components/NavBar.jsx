@@ -1,0 +1,112 @@
+import { useState } from 'react';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { Link } from 'react-router-dom';
+import Modal from 'react-bootstrap/Modal';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import OffCanvas from './MyCart';
+import MyCart from './MyCart';
+
+export default function NavBar({ connectedUser, setConnectedUser, user_DB, removeFromCart }) {
+    const [formData, setFormData] = useState({ email: '', password: '' });
+    const [open, setOpen] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(false);
+
+    const handleChangeTextField = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+    const handleSubmit = (e) => {
+        const { email, password } = formData;
+        const tempUser = user_DB.find(u => u.email === email && u.password === password);
+        if (tempUser) {
+            setConnectedUser(tempUser);
+            setShowLoginModal(false)
+        } else {
+            setOpen(true)
+        }
+    };
+    const handleCloseSnackbar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
+
+    const handleLoginClick = () => setShowLoginModal(true);
+    const handleCloseLoginModal = () => setShowLoginModal(false);
+
+    const handleLogoutClick = () => { setConnectedUser(null); }
+
+
+
+    const [show, setShow] = useState(false);
+    const toggleShow = () => setShow((s) => !s);
+    const handleClose = () => setShow(false);
+
+    return (
+        <>
+            <Navbar className="navBar sections sticky-top" data-bs-theme="dark">
+                <Container>
+                    <Navbar.Brand as={Link} to="/">Navbar</Navbar.Brand>
+                    <Nav className="m-auto">
+                        <Nav.Link as={Link} to="/store">Store</Nav.Link>
+                        <Nav.Link as={Link} to="/features">Features</Nav.Link>
+                        <Nav.Link as={Link} to="/james-webb">James-Webb</Nav.Link>
+                        <Nav.Link as={Link} to="/about-us">About Us</Nav.Link>
+                    </Nav>
+                    {!connectedUser && <Nav>
+                        <Nav.Link as={Link} onClick={handleLoginClick}>Login</Nav.Link>
+                        <Nav.Link as={Link} to="/registration">Get Started</Nav.Link>
+                    </Nav>}
+                    {connectedUser && <Nav>
+                        <Nav.Link as={Link} to="/" onClick={handleLogoutClick} >Logout</Nav.Link>
+                        <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
+                        <Nav.Link as={Link} onClick={toggleShow} >MyCart</Nav.Link>
+                    </Nav>}
+                </Container>
+            </Navbar>
+            <Modal show={showLoginModal} onHide={handleCloseLoginModal}>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={handleCloseLoginModal}></button>
+                <h5 className="display-4 text-center text-black-50">Log in Below</h5>
+                <Modal.Body>
+                    <div className='text-black-50 d-flex flex-column align-items-center'>
+                        <TextField
+                            label="Email"
+                            name="email"
+                            type="email"
+                            value={formData.email}
+                            onChange={handleChangeTextField}
+                            margin="normal"
+                            sx={{ marginBlock: 1 }}
+                        />
+                        <TextField
+                            label="Password"
+                            name="password"
+                            type="password"
+                            onChange={handleChangeTextField}
+                            margin="normal"
+                            sx={{ marginBlock: 1 }}
+
+                        />
+
+                        <Button onClick={handleSubmit} variant="contained" sx={{ backgroundColor: 'var(--sectionBG)', color: 'white', mt: 2 }}>
+                            LOGIN
+                        </Button>
+                        <Snackbar
+                            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+                            open={open}
+                            autoHideDuration={2000}
+                            onClose={handleCloseSnackbar}
+                            message="Password or Email Incorrect"
+                        />
+                    </div>
+                </Modal.Body>
+            </Modal>
+
+            <MyCart show={show} handleClose={handleClose} cart={connectedUser.cart} removeFromCart={removeFromCart} />
+        </>
+    );
+}
