@@ -7,44 +7,27 @@ import ProductCard from './ProductCard';
 import { Button } from '@mui/material';
 
 export default function Store({ addToCart, products }) {
-
+    const [localProducts, setLocalProducts] = useState(products);
     const [sortBy, setSortBy] = useState('title');
     const [sortDirection, setSortDirection] = useState('asc');
     const [currentPage, setCurrentPage] = useState(1);
     const [productsPerPage, setProductsPerPage] = useState(8);
 
-    const handleSortChange = (event) => {
-        setSortDirection('desc');
-        setSortBy(event.target.value)
-        const sortProperty = event.target.value;
-        products.sort((a, b) => {
-            if (a[sortProperty] < b[sortProperty]) return -1;
-            if (a[sortProperty] > b[sortProperty]) return 1;
-            return 0;
-        });
-    };
-    const toggleSortDirection = () => {
-        setSortDirection((prevDirection) => (prevDirection === 'asc' ? 'desc' : 'asc'));
-    };
-    useEffect(() => {
+    const handleSortChange = (event) => { setSortBy(event.target.value); };
+    const toggleSortDirection = () => { setSortDirection((prevDirection) => (prevDirection === 'asc' ? 'desc' : 'asc')); };
+    const handleProductsPerPage = (event) => { setProductsPerPage(event.target.value); setCurrentPage(1); };
+    const handlePageChange = (event, value) => { setCurrentPage(value); };
 
-        console.log(sortBy);
-        console.log(sortDirection);
-        products.sort((a, b) => {
+
+    useEffect(() => {
+        const sortedProducts = [...products];
+        sortedProducts.sort((a, b) => {
             if (a[sortBy] < b[sortBy]) return sortDirection === 'asc' ? -1 : 1;
             if (a[sortBy] > b[sortBy]) return sortDirection === 'asc' ? 1 : -1;
             return 0;
         });
-
-    }, [sortDirection, sortBy]);
-    const handleProductsPerPage = (event) => {
-        setProductsPerPage(event.target.value);
-        setCurrentPage(1);
-    };
-
-    const handlePageChange = (event, value) => {
-        setCurrentPage(value);
-    };
+        setLocalProducts(sortedProducts);
+    }, [sortDirection, sortBy, products]);
 
     const printProductPerPage = (products) => {
         const indexOfLastProduct = currentPage * productsPerPage;
@@ -57,10 +40,7 @@ export default function Store({ addToCart, products }) {
         });
 
         return productElements;
-
     };
-
-
 
     return (
         <div style={{ maxWidth: "1000px", margin: "auto" }}>
@@ -96,15 +76,13 @@ export default function Store({ addToCart, products }) {
 
             </Grid>
 
-            {/* Product Grid */}
             <Grid container spacing={2} className='mb-4'>
-                {printProductPerPage(products)}
+                {printProductPerPage(localProducts)}
             </Grid>
 
-            {/* Pagination */}
             <Grid container justifyContent="center" className='mb-3'>
                 <Pagination
-                    count={Math.ceil(products.length / productsPerPage)}
+                    count={Math.ceil(localProducts.length / productsPerPage)}
                     page={currentPage}
                     onChange={handlePageChange}
                 />

@@ -7,14 +7,10 @@ import Snackbar from '@mui/material/Snackbar';
 
 export default function Profile({ connectedUser, setConnectedUser, user_DB, setUser_DB }) {
     const [formData, setFormData] = useState({ ...connectedUser });
-    const [isEditing, setIsEditing] = useState(false);
     const [open, setOpen] = useState(false);
     const [errorMessage, setErrorMassage] = useState("");
 
-    const handleChange = (event) => {
-        setFormData({ ...formData, [event.target.name]: event.target.value, });
-    };
-
+    const handleChange = (event) => {        setFormData({ ...formData, [event.target.name]: event.target.value, });    };
 
     const isValidUser = (user) => {
         const { firstName, lastName, password, confirmPassword, email, birthDate } = user;
@@ -33,6 +29,7 @@ export default function Profile({ connectedUser, setConnectedUser, user_DB, setU
         if (user_DB.find(u => u.email === user.email && u.email !== connectedUser.email)) return "User already exists.";
         return true;
     }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const validationResult = isValidUser(formData);
@@ -41,9 +38,7 @@ export default function Profile({ connectedUser, setConnectedUser, user_DB, setU
             setOpen(true);
             return;
         }
-
         handleSave(formData);
-
     };
 
     const handleSave = (updatedUser) => {
@@ -51,7 +46,6 @@ export default function Profile({ connectedUser, setConnectedUser, user_DB, setU
             user.email === connectedUser.email ? updatedUser : user
         ));
         setConnectedUser(updatedUser);
-        setIsEditing(false);
     };
 
     const handleCloseSnackbar = (event, reason) => {

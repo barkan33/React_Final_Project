@@ -12,23 +12,12 @@ export default function ProductCard({ addToCart, product }) {
         setSoldOut(product.stock === 0);
     }, [product])
 
-    const {
-        id,
-        title,
-        author,
-        artist,
-        publisher,
-        genre,
-        price,
-        coverImage,
-        stock
-    } = product;
+    const { id, title, author, artist, publisher, genre, price, coverImage, stock } = product;
 
     const handleAddToCart = () => {
         if (product.stock > 0)
             addToCart(id);
     }
-
 
     return (
         <Card sx={{ maxWidth: 270, margin: "auto", boxShadow: "6px 5px 6px #00000037" }}>
@@ -39,10 +28,7 @@ export default function ProductCard({ addToCart, product }) {
                 alt={title}
             />
             <CardContent>
-                <Typography gutterBottom variant="h5" component="div" sx={{
-                    overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 1,
-                    WebkitBoxOrient: 'vertical'
-                }}>
+                <Typography gutterBottom variant="h5" component="div" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical' }}>
                     {title}
                 </Typography>
                 <Typography component={'div'} variant="body2" color="text.secondary" >
@@ -60,8 +46,6 @@ export default function ProductCard({ addToCart, product }) {
                     {soldOut == false ? "Add to Cart" : "Sold Out"}
                 </Button>
             </CardContent>
-
         </Card >
-
     );
 }

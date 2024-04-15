@@ -13,10 +13,17 @@ export default function NavBar({ connectedUser, setConnectedUser, user_DB, remov
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [open, setOpen] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
+    const [showCart, setShowCart] = useState(false);
     const navigate = useNavigate();
-    const handleChangeTextField = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+
+
+    const handleChangeTextField = (e) => { setFormData({ ...formData, [e.target.name]: e.target.value }); };
+    const handleCloseLoginModal = () => setShowLoginModal(false);
+    const handleLoginClick = () => setShowLoginModal(true);
+    const handleLogoutClick = () => { setConnectedUser(null); }
+    const toggleShowCart = () => setShowCart((s) => !s);
+    const handleCloseCart = () => setShowCart(false);
+
     const handleSubmit = (e) => {
         const { email, password } = formData;
         const tempUser = user_DB.find(u => u.email === email && u.password === password);
@@ -28,21 +35,13 @@ export default function NavBar({ connectedUser, setConnectedUser, user_DB, remov
             setOpen(true)
         }
     };
+
     const handleCloseSnackbar = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
         setOpen(false);
     };
-
-    const handleLoginClick = () => setShowLoginModal(true);
-    const handleCloseLoginModal = () => setShowLoginModal(false);
-
-    const handleLogoutClick = () => { setConnectedUser(null); }
-
-    const [show, setShow] = useState(false);
-    const toggleShow = () => setShow((s) => !s);
-    const handleClose = () => setShow(false);
 
     return (
         <>
@@ -61,7 +60,7 @@ export default function NavBar({ connectedUser, setConnectedUser, user_DB, remov
                             <Nav.Link as={Link} to="/registration">Get Started</Nav.Link>
                         </Nav>}
                         {connectedUser && <Nav>
-                            <Nav.Link as={Link} onClick={toggleShow} >MyCart</Nav.Link>
+                            <Nav.Link as={Link} onClick={toggleShowCart} >MyCart</Nav.Link>
                             <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
                             <Nav.Link as={Link} to="/" onClick={handleLogoutClick} >Logout</Nav.Link>
                         </Nav>}
@@ -91,7 +90,6 @@ export default function NavBar({ connectedUser, setConnectedUser, user_DB, remov
                             sx={{ marginBlock: 1 }}
 
                         />
-
                         <Button onClick={handleSubmit} variant="contained" sx={{ backgroundColor: 'var(--sectionBG)', color: 'white', mt: 2 }}>
                             LOGIN
                         </Button>
@@ -105,7 +103,7 @@ export default function NavBar({ connectedUser, setConnectedUser, user_DB, remov
                     </div>
                 </Modal.Body>
             </Modal>
-            {connectedUser && <MyCart show={show} handleClose={handleClose} cart={connectedUser.cart} removeFromCart={removeFromCart} />}
+            {connectedUser && <MyCart show={showCart} handleClose={handleCloseCart} cart={connectedUser.cart} removeFromCart={removeFromCart} />}
 
         </>
     );

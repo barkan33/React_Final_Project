@@ -18,9 +18,8 @@ export default function Registration({ user_DB, setUser_DB }) {
     const [errorMessage, setErrorMassage] = useState("");
     const navigate = useNavigate();
 
-    const handleChangeTextField = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+    const handleChangeTextField = (e) => { setFormData({ ...formData, [e.target.name]: e.target.value }); };
+
     const isValidUser = (user) => {
         const { firstName, lastName, password, confirmPassword, email, birthDate, cart } = user;
 
@@ -38,6 +37,7 @@ export default function Registration({ user_DB, setUser_DB }) {
         if (user_DB.find(u => u.email === user.email)) return "User already exists.";
         return true;
     }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const validationResult = isValidUser(formData);
@@ -53,6 +53,7 @@ export default function Registration({ user_DB, setUser_DB }) {
         setUser_DB(newUser_DB);
         navigate('/')
     };
+
     const handleCloseSnackbar = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -65,7 +66,6 @@ export default function Registration({ user_DB, setUser_DB }) {
             <h5 className="display-5 text-center text-black-50">Registation</h5>
 
             <TextField
-
                 label="First Name"
                 name="firstName"
                 value={formData.firstName}
@@ -82,7 +82,6 @@ export default function Registration({ user_DB, setUser_DB }) {
                 margin="normal"
                 fullWidth
                 sx={{ marginBlock: 1 }}
-
             />
             <TextField
                 label="Password"
