@@ -2,19 +2,18 @@ import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
-import OffCanvas from './MyCart';
 import MyCart from './MyCart';
 
 export default function NavBar({ connectedUser, setConnectedUser, user_DB, removeFromCart }) {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [open, setOpen] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
-
+    const navigate = useNavigate();
     const handleChangeTextField = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -24,6 +23,7 @@ export default function NavBar({ connectedUser, setConnectedUser, user_DB, remov
         if (tempUser) {
             setConnectedUser(tempUser);
             setShowLoginModal(false)
+            navigate("/");
         } else {
             setOpen(true)
         }
@@ -40,32 +40,32 @@ export default function NavBar({ connectedUser, setConnectedUser, user_DB, remov
 
     const handleLogoutClick = () => { setConnectedUser(null); }
 
-
-
     const [show, setShow] = useState(false);
     const toggleShow = () => setShow((s) => !s);
     const handleClose = () => setShow(false);
 
     return (
         <>
-            <Navbar className="navBar sections sticky-top" data-bs-theme="dark">
-                <Container>
-                    <Navbar.Brand as={Link} to="/">Navbar</Navbar.Brand>
-                    <Nav className="m-auto">
-                        <Nav.Link as={Link} to="/store">Store</Nav.Link>
-                        <Nav.Link as={Link} to="/features">Features</Nav.Link>
-                        <Nav.Link as={Link} to="/james-webb">James-Webb</Nav.Link>
-                        <Nav.Link as={Link} to="/about-us">About Us</Nav.Link>
-                    </Nav>
-                    {!connectedUser && <Nav>
-                        <Nav.Link as={Link} onClick={handleLoginClick}>Login</Nav.Link>
-                        <Nav.Link as={Link} to="/registration">Get Started</Nav.Link>
-                    </Nav>}
-                    {connectedUser && <Nav>
-                        <Nav.Link as={Link} to="/" onClick={handleLogoutClick} >Logout</Nav.Link>
-                        <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
-                        <Nav.Link as={Link} onClick={toggleShow} >MyCart</Nav.Link>
-                    </Nav>}
+            <Navbar collapseOnSelect expand="md" className="navBar sections sticky-top" data-bs-theme="dark">
+                <Container style={{ minWidth: "0p" }}>
+                    <Navbar.Brand as={Link} to="/">Wonderland Market</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="m-auto">
+                            <Nav.Link as={Link} to="/store">Store</Nav.Link>
+                            <Nav.Link as={Link} to="/features">Features</Nav.Link>
+                            <Nav.Link as={Link} to="/location">Location</Nav.Link>
+                        </Nav>
+                        {!connectedUser && <Nav>
+                            <Nav.Link as={Link} onClick={handleLoginClick}>Login</Nav.Link>
+                            <Nav.Link as={Link} to="/registration">Get Started</Nav.Link>
+                        </Nav>}
+                        {connectedUser && <Nav>
+                            <Nav.Link as={Link} onClick={toggleShow} >MyCart</Nav.Link>
+                            <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
+                            <Nav.Link as={Link} to="/" onClick={handleLogoutClick} >Logout</Nav.Link>
+                        </Nav>}
+                    </Navbar.Collapse>
                 </Container>
             </Navbar>
             <Modal show={showLoginModal} onHide={handleCloseLoginModal}>
@@ -105,8 +105,8 @@ export default function NavBar({ connectedUser, setConnectedUser, user_DB, remov
                     </div>
                 </Modal.Body>
             </Modal>
+            {connectedUser && <MyCart show={show} handleClose={handleClose} cart={connectedUser.cart} removeFromCart={removeFromCart} />}
 
-            <MyCart show={show} handleClose={handleClose} cart={connectedUser.cart} removeFromCart={removeFromCart} />
         </>
     );
 }

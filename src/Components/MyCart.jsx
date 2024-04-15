@@ -13,43 +13,45 @@ export default function MyCart({ show, handleClose, cart, removeFromCart }) {
         { field: 'title', headerName: 'Title', width: 150, editable: false, },
         { field: 'author', headerName: 'Author', width: 110, editable: false, },
         { field: 'price', headerName: 'Price', type: 'number', width: 60, editable: false, },
-        { field: 'quantity', headerName: 'Quantity', type: 'number', width: 70, editable: true, },
+        { field: 'quantity', headerName: 'Quantity', type: 'number', width: 70, editable: false, },
         {
-            field: 'action', headerName: 'Action', width: 60, renderCell: (params) => (
+            field: 'action', headerName: '', width: 60, renderCell: (params) => (
                 <IconButton onClick={() => removeFromCart(params.row.id, params.row.quantity)}><DeleteForeverIcon sx={{ color: "red" }} /></IconButton>
             ),
         }
     ];
     let total = 0;
     return (
-        <>
-            <Offcanvas show={show} onHide={handleClose} scroll={true} backdrop={false} style={{ width: "560px" }}>
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body >
-                    <Box sx={{ height: 526, width: '100%' }}>
-                        <DataGrid
-                            rows={cart}
-                            columns={columns}
-                            initialState={{
-                                pagination: {
-                                    paginationModel: {
-                                        pageSize: 8,
-                                    },
+
+        <Offcanvas show={show} onHide={handleClose} scroll={true} backdrop={false} style={{ width: "560px", boxShadow: "6px 5px 6px #00000037" }}>
+            <Offcanvas.Header closeButton>
+                <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body >
+                <Box sx={{ height: 'calc(100% - 48px)', width: '100%' }}>
+                    <DataGrid
+                        rows={cart}
+                        columns={columns}
+                        pageSizeOptions={[8]}
+                        editable={false}
+                        disableSelectionOnClick={true}
+                        disableColumnMenu={true}
+
+                        initialState={{
+                            pagination: {
+                                paginationModel: {
+                                    pageSize: 8,
                                 },
-                            }}
-                            pageSizeOptions={[8]}
-                            editable={false}
-                            disableSelectionOnClick={true}
-                        />
-                    </Box>
-                    {useMemo(() => {
-                        total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-                        return <Offcanvas.Title>Total: ${total.toFixed(2)}</Offcanvas.Title>;
-                    }, [cart])}
-                </Offcanvas.Body>
-            </Offcanvas >
-        </>
+                            },
+                        }}
+                    />
+                </Box>
+                {useMemo(() => {
+                    total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+                    return <Offcanvas.Title>Total: ${total.toFixed(2)}</Offcanvas.Title>;
+                }, [cart])}
+            </Offcanvas.Body>
+        </Offcanvas >
+
     );
 }

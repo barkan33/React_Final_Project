@@ -31,7 +31,7 @@ export default function ProductCard({ addToCart, product }) {
 
 
     return (
-        <Card sx={{ maxWidth: 270, margin: "auto" }}>
+        <Card sx={{ maxWidth: 270, margin: "auto", boxShadow: "6px 5px 6px #00000037" }}>
             <CardMedia
                 component="img"
                 height="120"
@@ -40,13 +40,12 @@ export default function ProductCard({ addToCart, product }) {
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div" sx={{
-                    overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 1, // Количество строк для отображения
+                    overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 1,
                     WebkitBoxOrient: 'vertical'
                 }}>
                     {title}
                 </Typography>
                 <Typography component={'div'} variant="body2" color="text.secondary" >
-                    {/* Display relevant information */}
                     <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical' }} >
                         By: {author} {artist && `(${artist})`}
                     </div>

@@ -22,7 +22,7 @@ export default function Registration({ user_DB, setUser_DB }) {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
     const isValidUser = (user) => {
-        const { firstName, lastName, password, confirmPassword, email, birthDate } = user;
+        const { firstName, lastName, password, confirmPassword, email, birthDate, cart } = user;
 
         if (!firstName.trim() || !lastName.trim()) { return "Please enter your first and last name."; }
         if (!/^[a-zA-Z ]*$/.test(firstName) || !/^[a-zA-Z ]*$/.test(lastName)) { return "Name cannot contain numbers and special characters"; }
@@ -47,11 +47,9 @@ export default function Registration({ user_DB, setUser_DB }) {
             return;
         }
 
-        const newUser = [...formData];
+        const newUser = { ...formData };
         delete newUser.confirmPassword;
-
         const newUser_DB = [...user_DB, newUser];
-        console.log(newUser_DB);
         setUser_DB(newUser_DB);
         navigate('/')
     };
@@ -63,7 +61,7 @@ export default function Registration({ user_DB, setUser_DB }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} style={{ width: "400px", margin: "30px auto", backgroundColor: "#eeeeff", padding: 20, borderRadius: 8 }}>
+        <form onSubmit={handleSubmit} style={{ width: "400px", maxWidth: "90vw", marginInline: "auto", marginBottom: "130px", marginTop: "80px", backgroundColor: "#eeeeff", padding: 20, borderRadius: 8, boxShadow: "6px 5px 6px #00000037" }}>
             <h5 className="display-5 text-center text-black-50">Registation</h5>
 
             <TextField

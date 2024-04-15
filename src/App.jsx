@@ -8,6 +8,9 @@ import Hero from './Components/Hero'
 import Registration from './Components/Registration';
 import Store from './Components/Store';
 import Profile from './Components/Profile';
+import Footer from './Components/Footer';
+import Map from './Components/Map';
+import Features from './Components/Features';
 
 function App() {
   const [user_DB, setUser_DB] = useState([{
@@ -222,7 +225,6 @@ function App() {
       stock: 6,
     }
   ]);
-
   const addToCart = (id) => {
     if (connectedUser == null) return;
     setProducts(prevProducts => prevProducts.map(product =>
@@ -248,7 +250,6 @@ function App() {
 
 
   };
-
   const removeFromCart = (id, quantity) => {
     setUser_DB(prevUser_DB =>
       prevUser_DB.map(user => {
@@ -268,13 +269,13 @@ function App() {
       product.id === id ? { ...product, stock: product.stock + quantity } : product
     ));
   };
-
-
-
   useEffect(() => {
-    const updatedUser = user_DB.find(user => user.email === connectedUser.email);
-    if (updatedUser)
-      setConnectedUser(updatedUser);
+    if (connectedUser != null) {
+
+      const updatedUser = user_DB.find(user => user.email === connectedUser.email);
+      if (updatedUser)
+        setConnectedUser(updatedUser);
+    }
 
   }, [user_DB]);
 
@@ -287,7 +288,10 @@ function App() {
           <Route path="/registration" element={<Registration user_DB={user_DB} setUser_DB={setUser_DB} />} />
           <Route path="/store" element={<Store addToCart={addToCart} products={products} />} />
           <Route path="/profile" element={<Profile connectedUser={connectedUser} setConnectedUser={setConnectedUser} user_DB={user_DB} setUser_DB={setUser_DB} />} />
+          <Route path="/location" element={<Map></Map>} />
+          <Route path="/features" element={<Features />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
 
     </>

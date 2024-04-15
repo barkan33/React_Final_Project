@@ -5,54 +5,37 @@
 .sections {
   background-color: var(--sectionBG);
   box-shadow: 6px 5px 6px #00000037;
-
 }
 
-/* 
-if screan < 800:
-    .navBar: display: hidden
-*/
+.container {
+  max-width: none !important;
+}
+
 .navBar {
   margin: 20px auto;
   width: 90vw;
-  min-width: 700px;
   position: sticky;
   top: 0;
 }
 
-.navBarItem {
-  margin-inline: 14px;
-}
-
-.RegBtn {
-
-  background-color: #03141F !important;
-  border-color: #03141F !important;
-}
-
-.RegBtn:hover {
-  background-color: #03111b !important;
-  border-color: #03111b !important;
-}
-
-.LoginBtn:hover {
-  color: white !important;
-
-}
-
-.carousel {
-  margin: 30px auto;
-  height: 70vh;
+.heroCarousel {
+  margin: auto;
   width: 90vw;
+  height: 87vh;
+
 }
 
 .carouselImage {
   width: 100%;
-  height: 70vh;
   object-fit: cover;
+  height: 87vh;
 }
 
 .input {
   height: 50px;
   border-radius: 10px;
+}
+
+.name-fields .MuiTextField-root {
+  width: 100%;
 }
