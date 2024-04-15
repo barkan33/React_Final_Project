@@ -1,4 +1,6 @@
 import Carousel from 'react-bootstrap/Carousel';
+import LogoBW2 from '../assets/logoBW2';
+import LogoPurple from '../assets/LogoPurple';
 
 const headingStyle = {
   color: 'white',
@@ -48,5 +50,6 @@ export default function Hero() {
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
+
   );
 }

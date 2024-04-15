@@ -250,6 +250,7 @@ function App() {
 
 
   };
+
   const removeFromCart = (id, quantity) => {
     setUser_DB(prevUser_DB =>
       prevUser_DB.map(user => {
@@ -260,15 +261,11 @@ function App() {
       })
     );
 
-    // setConnectedUser(prevUser => ({
-    //   ...prevUser,
-    //   cart: prevUser.cart.filter(item => item.id !== id)
-    // }));
-
     setProducts(prevProducts => prevProducts.map(product =>
       product.id === id ? { ...product, stock: product.stock + quantity } : product
     ));
   };
+
   useEffect(() => {
     if (connectedUser != null) {
 
@@ -280,21 +277,18 @@ function App() {
   }, [user_DB]);
 
   return (
-    <>
-      <BrowserRouter>
-        <NavBar connectedUser={connectedUser} setConnectedUser={setConnectedUser} user_DB={user_DB} removeFromCart={removeFromCart} />
-        <Routes>
-          <Route path="" element={<Hero />} />
-          <Route path="/registration" element={<Registration user_DB={user_DB} setUser_DB={setUser_DB} />} />
-          <Route path="/store" element={<Store addToCart={addToCart} products={products} />} />
-          <Route path="/profile" element={<Profile connectedUser={connectedUser} setConnectedUser={setConnectedUser} user_DB={user_DB} setUser_DB={setUser_DB} />} />
-          <Route path="/location" element={<Map></Map>} />
-          <Route path="/features" element={<Features />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-
-    </>
+    <BrowserRouter>
+      <NavBar connectedUser={connectedUser} setConnectedUser={setConnectedUser} user_DB={user_DB} removeFromCart={removeFromCart} />
+      <Routes>
+        <Route path="" element={<Hero />} />
+        <Route path="/registration" element={<Registration user_DB={user_DB} setUser_DB={setUser_DB} />} />
+        <Route path="/store" element={<Store addToCart={addToCart} products={products} />} />
+        <Route path="/profile" element={<Profile connectedUser={connectedUser} setConnectedUser={setConnectedUser} user_DB={user_DB} setUser_DB={setUser_DB} />} />
+        <Route path="/location" element={<Map></Map>} />
+        <Route path="/features" element={<Features />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   )
 };
 

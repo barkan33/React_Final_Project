@@ -8,6 +8,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import MyCart from './MyCart';
+import LogoBW2 from '../assets/logoBW2';
+import LogoPurple from '../assets/LogoPurple';
 
 export default function NavBar({ connectedUser, setConnectedUser, user_DB, removeFromCart }) {
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -47,7 +49,7 @@ export default function NavBar({ connectedUser, setConnectedUser, user_DB, remov
         <>
             <Navbar collapseOnSelect expand="md" className="navBar sections sticky-top" data-bs-theme="dark">
                 <Container style={{ minWidth: "0p" }}>
-                    <Navbar.Brand as={Link} to="/">Wonderland Market</Navbar.Brand>
+                    <Navbar.Brand as={Link} to="/"><LogoBW2 height={"7vh"} /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="m-auto">
@@ -64,9 +66,11 @@ export default function NavBar({ connectedUser, setConnectedUser, user_DB, remov
                             <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
                             <Nav.Link as={Link} to="/" onClick={handleLogoutClick} >Logout</Nav.Link>
                         </Nav>}
+
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
+            <LogoPurple height={"70vw"} />
             <Modal show={showLoginModal} onHide={handleCloseLoginModal}>
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={handleCloseLoginModal}></button>
                 <h5 className="display-4 text-center text-black-50">Log in Below</h5>

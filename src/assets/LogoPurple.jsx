@@ -3,23 +3,24 @@ import React from "react";
 function LogoPurple({ height, width }) {
   return (
     <svg
+
       xmlns="http://www.w3.org/2000/svg"
       xmlnsmydata="http://www.w3.org/2000/svg"
       height={height}
       width={width}
-      viewBox="0 0 550 470"
-      mydatacompanyname="Wonderland Market"
-      mydatacontrastcolor="ffffff"
-      mydataid1="574"
-      mydataid2="575"
-      mydatalayouttype="undefined"
-      mydatapresentation="2.5"
-      mydataspecialfontid="undefined"
-      mydatatemplate="Contrast"
+      viewBox="135 95 280 290"
       style={{
-        backgroundColor: "rgb(60, 30, 62)",
-        backgroundImage:
-          "radial-gradient(circle closest-side, rgba(209, 7, 84, 0.65) 0%, rgba(209, 7, 84, 0.12) 70%, rgb(60, 30, 62) 100%)",
+        maxHeight: "100vh",
+        opacity: 0.1,
+        zIndex: -1,
+        position: "absolute",
+        left: "50%",
+        top: 0,
+        transform: "translateX(-50%)",
+
+        display: "block",
+        margin: "auto",
+        // backgroundColor: "rgb(60, 30, 62)", backgroundImage: "radial-gradient(circle closest-side, rgba(209, 7, 84, 0.65) 0%, rgba(209, 7, 84, 0.12) 70%, rgb(60, 30, 62) 100%)",
       }}
     >
       <defs

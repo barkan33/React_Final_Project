@@ -1,8 +1,6 @@
 import React from "react";
 import GoogleMapReact from 'google-map-react';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 
 
 const AnyReactComponent = ({ text }) =>
@@ -35,7 +33,7 @@ export default function Map() {
     };
 
     return (
-        <div style={{ height: '88vh', width: "90vw", margin: "auto" }}>
+        <div style={{ height: '85vh', width: "90vw", margin: "auto" }}>
             <GoogleMapReact
                 bootstrapURLKeys={{ key: "AIzaSyBWyPvCM-w7CSPD_hWG7kifWdDXi-pWNrQ" }}
                 defaultCenter={defaultProps.center}

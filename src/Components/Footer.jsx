@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+import LogoPurple from '../assets/LogoPurple';
 
 
 
@@ -10,7 +11,7 @@ import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaFacebook, FaTwitter, FaInstagram
 
 export default function Footer() {
     return (
-        <Box className="sections" sx={{ color: "#eeeeff", boxShadow: "6px 5px 6px #00000037", mt: 3 }} component="footer">
+        <Box className="sections" sx={{ color: "var(--white)", boxShadow: "6px 5px 6px #00000037", mt: 3 }} component="footer">
             <Grid container spacing={2} justifyContent="center" alignItems="flex-start" sx={{ p: 3 }}>
 
                 <Grid item xs={12} sm={6} md={3}>
@@ -68,7 +69,9 @@ export default function Footer() {
                     </Box>
                 </Grid>
             </Grid>
-            <Typography variant="h6" color="#eeeeff" align="center" sx={{ mt: 2 }}>
+            
+            <Typography variant="h6" color="var(--white)" align="center" sx={{ mt: 2 }}>
+
                 © {new Date().getFullYear()} Wonderland Market
             </Typography>
         </Box >

@@ -62,7 +62,7 @@ export default function Registration({ user_DB, setUser_DB }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} style={{ width: "400px", maxWidth: "90vw", marginInline: "auto", marginBottom: "130px", marginTop: "80px", backgroundColor: "#eeeeff", padding: 20, borderRadius: 8, boxShadow: "6px 5px 6px #00000037" }}>
+        <form onSubmit={handleSubmit} style={{ width: "400px", maxWidth: "90vw", marginInline: "auto", marginBottom: "130px", marginTop: "80px", backgroundColor: "var(--white)", padding: 20, borderRadius: 8, boxShadow: "6px 5px 6px #00000037" }}>
             <h5 className="display-5 text-center text-black-50">Registation</h5>
 
             <TextField

@@ -1,8 +1,7 @@
 import React from 'react';
 import { Container, Typography, Grid, Box } from '@mui/material';
 import { FaStar } from 'react-icons/fa';
-import { Card, Button } from 'react-bootstrap';
-import Carousel from 'react-bootstrap/Carousel'; // Assuming you have react-bootstrap installed
+import Carousel from 'react-bootstrap/Carousel';
 
 export default function Features() {
     const featuresData = [
@@ -18,15 +17,15 @@ export default function Features() {
             title: 'Exclusive Variant Covers',
             items: ['Spider-Man #1 Exclusive Variant', 'Batman #100 Exclusive Variant', 'Superman #1 Exclusive Variant', 'Avengers #1 Exclusive Variant', 'Wonder Woman #1 Exclusive Variant']
         },
-       
+
         {
             title: 'Special Collections',
             description: 'Hand-picked collections based on themes or genres.'
-        }, 
+        },
         {
             title: 'Manga & Anime',
             items: ['Popular series from Japan and beyond.', 'Explore diverse genres and art styles.']
-        }, 
+        },
         {
             title: 'Events & Signings',
             description: 'Meet your favorite creators and artists at our exciting events.'
@@ -43,7 +42,7 @@ export default function Features() {
         }
     ];
     return (
-        <Container sx={{ color: "#eeeeff", py: 5 }}>
+        <Container sx={{ color: "var(--white)", py: 5 }}>
             <Typography variant="h4" gutterBottom sx={{ mb: 4 }}>
                 Featured Comics
             </Typography>
@@ -53,7 +52,7 @@ export default function Features() {
                         <Box sx={{
                             borderRadius: '8px',
                             padding: '20px',
-                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                            backgroundColor: 'rgba(150, 180, 200, 0.3)',
                             textAlign: 'center',
                             boxShadow: "6px 5px 6px #00000037",
                             height: "250px",

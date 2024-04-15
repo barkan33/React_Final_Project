@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -10,7 +10,7 @@ export default function Profile({ connectedUser, setConnectedUser, user_DB, setU
     const [open, setOpen] = useState(false);
     const [errorMessage, setErrorMassage] = useState("");
 
-    const handleChange = (event) => {        setFormData({ ...formData, [event.target.name]: event.target.value, });    };
+    const handleChange = (event) => { setFormData({ ...formData, [event.target.name]: event.target.value, }); };
 
     const isValidUser = (user) => {
         const { firstName, lastName, password, confirmPassword, email, birthDate } = user;
@@ -64,7 +64,7 @@ export default function Profile({ connectedUser, setConnectedUser, user_DB, setU
                     width: "90vw",
                     '& .MuiTextField-root': { display: "block", m: 1, marginInline: "auto", width: '100%' },
                 },
-                bgcolor: '#eeeeff',
+                bgcolor: 'var(--white)',
                 width: "700px",
                 margin: "auto",
                 paddingBottom: "20px",
@@ -73,7 +73,8 @@ export default function Profile({ connectedUser, setConnectedUser, user_DB, setU
                 flexDirection: 'column',
                 alignItems: 'center',
                 boxShadow: "6px 5px 6px #00000037",
-                marginBottom: "75px"
+                marginTop: "8vh",
+                marginBottom: "9.6vh",
             }}
             onSubmit={handleSubmit}
         >

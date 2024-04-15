@@ -42,7 +42,7 @@ export default function ProductCard({ addToCart, product }) {
                     Price: ${price} <br />
                     Stoke: {stock > 0 ? stock : "Sold Out"}
                 </Typography>
-                <Button onClick={handleAddToCart} disabled={soldOut} variant="contained" sx={{ mt: 2, backgroundColor: '#041B29', color: 'white' }}>
+                <Button onClick={handleAddToCart} disabled={soldOut} variant="contained" sx={{ mt: 2, backgroundColor: 'var(--sectionBG)', color: 'white' }}>
                     {soldOut == false ? "Add to Cart" : "Sold Out"}
                 </Button>
             </CardContent>
