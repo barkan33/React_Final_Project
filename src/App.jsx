@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.css'
-import NavBar from './Components/NavBar'
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import NavBar from './Components/NavBar'
 import Hero from './Components/Hero'
 import Registration from './Components/Registration';
 import Store from './Components/Store';
@@ -11,24 +12,19 @@ import Profile from './Components/Profile';
 import Footer from './Components/Footer';
 import Map from './Components/Map';
 import Features from './Components/Features';
+import UserTable from './Components/UserTable';
 
 function App() {
   const [user_DB, setUser_DB] = useState([{
     firstName: 'ad',
     lastName: 'min',
+    id: 11111111,
     password: 'admin',
     email: 'admin@admin.com',
     birthDate: '2024-04-04',
     cart: []
   }]);
-  const [connectedUser, setConnectedUser] = useState({
-    firstName: 'ad',
-    lastName: 'min',
-    password: 'admin',
-    email: 'admin@admin.com',
-    birthDate: '2024-04-04',
-    cart: []
-  });
+  const [connectedUser, setConnectedUser] = useState(user_DB[0]);
   const [products, setProducts] = useState([
     {
       id: 12345,
@@ -225,6 +221,7 @@ function App() {
       stock: 6,
     }
   ]);
+
   const addToCart = (id) => {
     if (connectedUser == null) return;
     setProducts(prevProducts => prevProducts.map(product =>
@@ -232,7 +229,7 @@ function App() {
     ));
 
     setUser_DB(prevUser_DB => prevUser_DB.map(user => {
-      if (user.email !== connectedUser.email) return user;
+      if (user.id !== connectedUser.id) return user;
 
       const existingProductIndex = user.cart.findIndex(item => item.id === id);
 
@@ -265,11 +262,15 @@ function App() {
       product.id === id ? { ...product, stock: product.stock + quantity } : product
     ));
   };
-
+  const removeUser = (id) => {
+    setUser_DB(prevUser_DB =>
+      prevUser_DB.filter(user => user.id !== id)
+    );
+  }
   useEffect(() => {
     if (connectedUser != null) {
 
-      const updatedUser = user_DB.find(user => user.email === connectedUser.email);
+      const updatedUser = user_DB.find(user => user.id === connectedUser.id);
       if (updatedUser)
         setConnectedUser(updatedUser);
     }
@@ -278,16 +279,21 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar connectedUser={connectedUser} setConnectedUser={setConnectedUser} user_DB={user_DB} removeFromCart={removeFromCart} />
-      <Routes>
-        <Route path="" element={<Hero />} />
-        <Route path="/registration" element={<Registration user_DB={user_DB} setUser_DB={setUser_DB} />} />
-        <Route path="/store" element={<Store addToCart={addToCart} products={products} />} />
-        <Route path="/profile" element={<Profile connectedUser={connectedUser} setConnectedUser={setConnectedUser} user_DB={user_DB} setUser_DB={setUser_DB} />} />
-        <Route path="/location" element={<Map></Map>} />
-        <Route path="/features" element={<Features />} />
-      </Routes>
-      <Footer />
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <div style={{ flex: 1 }}>
+          <NavBar connectedUser={connectedUser} setConnectedUser={setConnectedUser} user_DB={user_DB} removeFromCart={removeFromCart} />
+          <Routes>
+            <Route path="" element={<Hero products={products} />} />
+            <Route path="/registration" element={<Registration user_DB={user_DB} setUser_DB={setUser_DB} />} />
+            <Route path="/store" element={<Store addToCart={addToCart} products={products} />} />
+            <Route path="/profile" element={<Profile connectedUser={connectedUser} setConnectedUser={setConnectedUser} user_DB={user_DB} setUser_DB={setUser_DB} />} />
+            <Route path="/location" element={<Map></Map>} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/admin" element={<UserTable user_DB={user_DB} removeUser={removeUser} />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
     </BrowserRouter>
   )
 };

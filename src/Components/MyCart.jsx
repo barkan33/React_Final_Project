@@ -47,7 +47,7 @@ export default function MyCart({ show, handleClose, cart, removeFromCart }) {
                     />
                 </Box>
                 {useMemo(() => {
-                    total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+                    total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
                     return <Offcanvas.Title>Total: ${total.toFixed(2)}</Offcanvas.Title>;
                 }, [cart])}
             </Offcanvas.Body>

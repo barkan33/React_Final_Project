@@ -11,7 +11,11 @@ import LogoPurple from '../assets/LogoPurple';
 
 export default function Footer() {
     return (
-        <Box className="sections" sx={{ color: "var(--white)", boxShadow: "6px 5px 6px #00000037", mt: 3 }} component="footer">
+        <Box className="sections" sx={{
+            color: "var(--white)",
+            boxShadow: "6px 5px 6px #00000037",
+            mt: 3
+        }} component="footer">
             <Grid container spacing={2} justifyContent="center" alignItems="flex-start" sx={{ p: 3 }}>
 
                 <Grid item xs={12} sm={6} md={3}>
@@ -69,7 +73,7 @@ export default function Footer() {
                     </Box>
                 </Grid>
             </Grid>
-            
+
             <Typography variant="h6" color="var(--white)" align="center" sx={{ mt: 2 }}>
 
                 © {new Date().getFullYear()} Wonderland Market

@@ -12,13 +12,17 @@ export default function Profile({ connectedUser, setConnectedUser, user_DB, setU
 
     const handleChange = (event) => { setFormData({ ...formData, [event.target.name]: event.target.value, }); };
 
-    const isValidUser = (user) => {
-        const { firstName, lastName, password, confirmPassword, email, birthDate } = user;
+    const isValidUser = (newUser) => {
+        const { firstName, lastName, password, confirmPassword, email, birthDate } = newUser;
 
         if (!firstName.trim() || !lastName.trim()) { return "Please enter your first and last name."; }
         if (!/^[a-zA-Z ]*$/.test(firstName) || !/^[a-zA-Z ]*$/.test(lastName)) { return "Name cannot contain numbers and special characters"; }
+
         if (!email) { return "Please enter your email."; }
+
         if (!birthDate) { return "Please enter your date of birth."; }
+        if (birthDate < new Date(1900, 0, 1)) { return "Date of birth cannot be before 1900."; }
+        if (birthDate > new Date()) { return "Date of birth cannot be in the future."; }
 
         if (password.length < 6) { return "Password must be at least 6 characters long."; }
         if (password !== confirmPassword) { return "Passwords do not match."; }
@@ -26,7 +30,7 @@ export default function Profile({ connectedUser, setConnectedUser, user_DB, setU
             return "Please enter a valid email address.";
         }
 
-        if (user_DB.find(u => u.email === user.email && u.email !== connectedUser.email)) return "User already exists.";
+        if (user_DB.find(u => u.email === newUser.email && u.email !== connectedUser.email)) return "Email already exists.";
         return true;
     }
 
@@ -46,6 +50,8 @@ export default function Profile({ connectedUser, setConnectedUser, user_DB, setU
             user.email === connectedUser.email ? updatedUser : user
         ));
         setConnectedUser(updatedUser);
+        setErrorMassage("Profile updated.");
+        setOpen(true);
     };
 
     const handleCloseSnackbar = (event, reason) => {
@@ -74,7 +80,7 @@ export default function Profile({ connectedUser, setConnectedUser, user_DB, setU
                 alignItems: 'center',
                 boxShadow: "6px 5px 6px #00000037",
                 marginTop: "8vh",
-                marginBottom: "9.6vh",
+
             }}
             onSubmit={handleSubmit}
         >
@@ -123,7 +129,6 @@ export default function Profile({ connectedUser, setConnectedUser, user_DB, setU
                     label="Пароль"
                     name="password"
                     type="password"
-                    value={formData.password}
                     onChange={handleChange}
                 />
                 <TextField

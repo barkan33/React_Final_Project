@@ -21,12 +21,16 @@ export default function Registration({ user_DB, setUser_DB }) {
     const handleChangeTextField = (e) => { setFormData({ ...formData, [e.target.name]: e.target.value }); };
 
     const isValidUser = (user) => {
-        const { firstName, lastName, password, confirmPassword, email, birthDate, cart } = user;
+        const { firstName, lastName, id, password, confirmPassword, email, birthDate, cart } = user;
 
         if (!firstName.trim() || !lastName.trim()) { return "Please enter your first and last name."; }
+        if (id.length < 8) { return "Please enter a valid ID"; }
         if (!/^[a-zA-Z ]*$/.test(firstName) || !/^[a-zA-Z ]*$/.test(lastName)) { return "Name cannot contain numbers and special characters"; }
         if (!email) { return "Please enter your email."; }
+        
         if (!birthDate) { return "Please enter your date of birth."; }
+        if (birthDate < new Date(1900, 0, 1)) { return "Date of birth cannot be before 1900."; }
+        if (birthDate > new Date()) { return "Date of birth cannot be in the future."; }
 
         if (password.length < 6) { return "Password must be at least 6 characters long."; }
         if (password !== confirmPassword) { return "Passwords do not match."; }
@@ -34,7 +38,7 @@ export default function Registration({ user_DB, setUser_DB }) {
             return "Please enter a valid email address.";
         }
 
-        if (user_DB.find(u => u.email === user.email)) return "User already exists.";
+        if (user_DB.find(u => u.email === user.email || u.id === user.id)) return "User already exists.";
         return true;
     }
 
@@ -62,7 +66,7 @@ export default function Registration({ user_DB, setUser_DB }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} style={{ width: "400px", maxWidth: "90vw", marginInline: "auto", marginBottom: "130px", marginTop: "80px", backgroundColor: "var(--white)", padding: 20, borderRadius: 8, boxShadow: "6px 5px 6px #00000037" }}>
+        <form onSubmit={handleSubmit} style={{ width: "400px", maxWidth: "90vw", marginInline: "auto", marginBlock: "6vh 4vh", backgroundColor: "var(--white)", padding: 20, borderRadius: 8, boxShadow: "6px 5px 6px #00000037" }}>
             <h5 className="display-5 text-center text-black-50">Registation</h5>
 
             <TextField
@@ -82,6 +86,18 @@ export default function Registration({ user_DB, setUser_DB }) {
                 margin="normal"
                 fullWidth
                 sx={{ marginBlock: 1 }}
+            />
+            <TextField
+                label="ID"
+                name="id"
+                type="number"
+                value={formData.id}
+                onChange={handleChangeTextField}
+                margin="normal"
+                fullWidth
+                sx={{
+                    marginBlock: 1, '& input[type=number]::-webkit-inner-spin-button': { '-webkit-appearance': 'none' }
+                }}
             />
             <TextField
                 label="Password"
