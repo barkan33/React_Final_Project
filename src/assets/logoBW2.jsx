@@ -1,4 +1,3 @@
-import React from "react";
 const animationKeyframes = `
   @keyframes stroke {
     100% {

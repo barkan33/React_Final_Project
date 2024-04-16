@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 
-export default function ProductCard({ addToCart, product }) {
+import {Card,CardContent,CardMedia,Typography,Button} from '@mui/material';
+
+export default function ProductCard({ addToCart, product, }) {
     const [soldOut, setSoldOut] = useState(false);
 
     useEffect(() => {
@@ -26,6 +23,7 @@ export default function ProductCard({ addToCart, product }) {
                 height="180"
                 image={coverImage}
                 alt={title}
+                onError={(e) => { e.target.src = "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg" }}
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical' }}>
@@ -42,9 +40,9 @@ export default function ProductCard({ addToCart, product }) {
                     Price: ${price} <br />
                     Stoke: {stock > 0 ? stock : "Sold Out"}
                 </Typography>
-                <Button onClick={handleAddToCart} disabled={soldOut} variant="contained" sx={{ mt: 2, backgroundColor: 'var(--sectionBG)', color: 'white' }}>
+                { <Button onClick={handleAddToCart} disabled={soldOut} variant="contained" sx={{ mt: 2, backgroundColor: 'var(--sectionBG)', color: 'white' }}>
                     {soldOut == false ? "Add to Cart" : "Sold Out"}
-                </Button>
+                </Button>}
             </CardContent>
         </Card >
     );

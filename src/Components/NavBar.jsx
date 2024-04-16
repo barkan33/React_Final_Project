@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate } from 'react-router-dom';
-import Modal from 'react-bootstrap/Modal';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
+
+import { Container, Nav, Navbar, Modal } from 'react-bootstrap';
+
+import { TextField, Button, Snackbar } from '@mui/material';
+
 import MyCart from './MyCart';
 import LogoBW2 from '../assets/logoBW2';
 import LogoPurple from '../assets/LogoPurple';
@@ -64,7 +62,8 @@ export default function NavBar({ connectedUser, setConnectedUser, user_DB, remov
                         {connectedUser && <Nav>
                             <Nav.Link as={Link} onClick={toggleShowCart} >MyCart</Nav.Link>
                             <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
-                            {connectedUser.email === "admin@admin.com" && <Nav.Link as={Link} to="/admin">User Table</Nav.Link>}
+                            {connectedUser.email === "admin@admin.com" && <Nav.Link as={Link} to="/admin/users">User Managment</Nav.Link>}
+                            {connectedUser.email === "admin@admin.com" && <Nav.Link as={Link} to="/admin/products">Products Managment</Nav.Link>}
                             <Nav.Link as={Link} to="/" onClick={handleLogoutClick} >Logout</Nav.Link>
                         </Nav>}
 

@@ -18,7 +18,7 @@ export default function Hero({ products }) {
           <img
             className="carouselImage d-block "
             src="https://pbs.twimg.com/media/GC4xy_lWgAAAY4F.jpg"
-            alt="First slide"
+            alt="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
           />
           <Carousel.Caption>
             <h1 style={headingStyle}>Special Event!</h1>
@@ -29,7 +29,7 @@ export default function Hero({ products }) {
           <img
             className="carouselImage d-block "
             src="https://bleedingcool.com/wp-content/uploads/2020/06/comic-store-future-1200x900.jpg"
-            alt="Second slide"
+            alt="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
           />
           <Carousel.Caption>
             <h1 style={headingStyle}>Exclusive Offer!</h1>
@@ -40,7 +40,7 @@ export default function Hero({ products }) {
           <img
             className="carouselImage d-block "
             src="https://i.pinimg.com/originals/3f/ee/e0/3feee00303674b32ec9cbed63371a7c7.jpg"
-            alt="Third slide"
+            alt="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
           />
           <Carousel.Caption>
             <h1 style={headingStyle}>Unusual Event!</h1>

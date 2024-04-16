@@ -1,9 +1,7 @@
 import { useState } from 'react';
 
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
+import { Box, Snackbar, Button, TextField } from '@mui/material';
+
 
 export default function Profile({ connectedUser, setConnectedUser, user_DB, setUser_DB }) {
     const [formData, setFormData] = useState({ ...connectedUser });
@@ -88,14 +86,14 @@ export default function Profile({ connectedUser, setConnectedUser, user_DB, setU
             <div>
                 <TextField
                     id="firstName"
-                    label="Имя"
+                    label="First Name"
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
                 />
                 <TextField
                     id="lastName"
-                    label="Фамилия"
+                    label="Last Name"
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
@@ -113,7 +111,7 @@ export default function Profile({ connectedUser, setConnectedUser, user_DB, setU
                 />
                 <TextField
                     id="birthDate"
-                    label="Дата рождения"
+                    label="Birth Date"
                     name="birthDate"
                     type="date"
                     value={formData.birthDate}
@@ -126,21 +124,21 @@ export default function Profile({ connectedUser, setConnectedUser, user_DB, setU
             <div>
                 <TextField
                     id="password"
-                    label="Пароль"
+                    label="Password"
                     name="password"
                     type="password"
                     onChange={handleChange}
                 />
                 <TextField
                     id="confirmPassword"
-                    label="Подтвердите пароль"
+                    label="Confirm Password"
                     name="confirmPassword"
                     type="password"
                     onChange={handleChange}
                 />
             </div>
             <Button type="submit" variant="contained" sx={{ backgroundColor: 'var(--sectionBG)', color: 'white', marginTop: "5px" }}>
-                Сохранить изменения
+                Save Changes
             </Button>
             <Snackbar
                 anchorOrigin={{ vertical: "top", horizontal: "center" }}

@@ -1,6 +1,4 @@
-import React from "react";
-
-function LogoPurple({ height, width }) {
+function LogoPurple({ height, width, zIndex = -1, opacity = 0.1 }) {
   return (
     <svg
 
@@ -10,9 +8,10 @@ function LogoPurple({ height, width }) {
       width={width}
       viewBox="135 95 280 290"
       style={{
+
         maxHeight: "100vh",
-        opacity: 0.1,
-        zIndex: -1,
+        opacity: opacity,
+        zIndex: zIndex,
         position: "absolute",
         left: "50%",
         top: 0,

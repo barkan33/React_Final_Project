@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container, Typography, Grid, Box, CardContent, CardMedia } from '@mui/material';
+
+import { Container, Typography, CardContent, CardMedia, Card } from '@mui/material';
 import Carousel from 'react-bootstrap/Carousel';
-import Card from '@mui/material/Card';
 
 export default function Recommended({ products }) {
 
@@ -23,6 +23,7 @@ export default function Recommended({ products }) {
                             height="500px"
                             image={coverImage}
                             alt={title}
+                            onError={(e) => { e.target.src = "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg" }}
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h4" component="div" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical' }}>

@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Grid from '@mui/material/Grid';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import Pagination from '@mui/material/Pagination';
+
+import { Button, Grid, Select, MenuItem, Pagination } from '@mui/material';
+
 import ProductCard from './ProductCard';
-import { Button } from '@mui/material';
 
 export default function Store({ addToCart, products }) {
     const [localProducts, setLocalProducts] = useState(products);

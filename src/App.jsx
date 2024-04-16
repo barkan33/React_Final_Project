@@ -13,6 +13,8 @@ import Footer from './Components/Footer';
 import Map from './Components/Map';
 import Features from './Components/Features';
 import UserTable from './Components/UserTable';
+import AddProducts from './Components/AddProducts';
+import LogoPurple from './assets/LogoPurple';
 
 function App() {
   const [user_DB, setUser_DB] = useState([{
@@ -24,7 +26,7 @@ function App() {
     birthDate: '2024-04-04',
     cart: []
   }]);
-  const [connectedUser, setConnectedUser] = useState(user_DB[0]);
+  const [connectedUser, setConnectedUser] = useState(null);
   const [products, setProducts] = useState([
     {
       id: 12345,
@@ -239,7 +241,6 @@ function App() {
     setProducts(prevProducts => prevProducts.map(product =>
       product.id === id ? { ...product, stock: product.stock - 1 } : product
     ));
-
     setUser_DB(prevUser_DB => prevUser_DB.map(user => {
       if (user.id !== connectedUser.id) return user;
 
@@ -256,8 +257,6 @@ function App() {
         return { ...user, cart: [...user.cart, { id, title: product.title, author: product.author, price: product.price, quantity: 1 }] };
       }
     }));
-
-
   };
 
   const removeFromCart = (id, quantity) => {
@@ -279,6 +278,11 @@ function App() {
       prevUser_DB.filter(user => user.id !== id)
     );
   }
+  const removeProduct = (id) => {
+    setProducts(prevProducts =>
+      prevProducts.filter(prod => prod.id !== id)
+    );
+  }
   useEffect(() => {
     if (connectedUser != null) {
 
@@ -289,24 +293,43 @@ function App() {
 
   }, [user_DB]);
 
+
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
+
+
+
   return (
-    <BrowserRouter>
-      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-        <div style={{ flex: 1 }}>
-          <NavBar connectedUser={connectedUser} setConnectedUser={setConnectedUser} user_DB={user_DB} removeFromCart={removeFromCart} />
-          <Routes>
-            <Route path="" element={<Hero products={products} />} />
-            <Route path="/registration" element={<Registration user_DB={user_DB} setUser_DB={setUser_DB} />} />
-            <Route path="/store" element={<Store addToCart={addToCart} products={products} />} />
-            <Route path="/profile" element={<Profile connectedUser={connectedUser} setConnectedUser={setConnectedUser} user_DB={user_DB} setUser_DB={setUser_DB} />} />
-            <Route path="/location" element={<Map></Map>} />
-            <Route path="/features" element={<Features />} />
-            <Route path="/admin" element={<UserTable user_DB={user_DB} removeUser={removeUser} />} />
-          </Routes>
+    <>
+
+      <div id="overlay"><LogoPurple /></div>
+      <BrowserRouter>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <div style={{ flex: 1 }}>
+            <NavBar connectedUser={connectedUser} setConnectedUser={setConnectedUser} user_DB={user_DB} removeFromCart={removeFromCart} />
+            <Routes>
+              <Route path="" element={<Hero products={products} />} />
+              <Route path="/registration" element={<Registration user_DB={user_DB} setUser_DB={setUser_DB} />} />
+              <Route path="/store" element={<Store addToCart={addToCart} products={products} />} />
+              <Route path="/profile" element={<Profile connectedUser={connectedUser} setConnectedUser={setConnectedUser} user_DB={user_DB} setUser_DB={setUser_DB} />} />
+              <Route path="/location" element={<Map></Map>} />
+              <Route path="/features" element={<Features />} />
+              <Route path="/admin/users" element={<UserTable user_DB={user_DB} removeUser={removeUser} />} />
+              <Route path="/admin/products" element={<AddProducts setProducts={setProducts} products={products} removeProduct={removeProduct} />} />
+            </Routes>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+
+    </>
   )
 };
 

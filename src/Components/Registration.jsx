@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import { useState } from 'react';
+
+import { TextField, Button, Snackbar } from '@mui/material/';
 import { useNavigate } from 'react-router-dom';
-import Snackbar from '@mui/material/Snackbar';
 
 export default function Registration({ user_DB, setUser_DB }) {
     const [formData, setFormData] = useState({
@@ -27,7 +26,7 @@ export default function Registration({ user_DB, setUser_DB }) {
         if (id.length < 8) { return "Please enter a valid ID"; }
         if (!/^[a-zA-Z ]*$/.test(firstName) || !/^[a-zA-Z ]*$/.test(lastName)) { return "Name cannot contain numbers and special characters"; }
         if (!email) { return "Please enter your email."; }
-        
+
         if (!birthDate) { return "Please enter your date of birth."; }
         if (birthDate < new Date(1900, 0, 1)) { return "Date of birth cannot be before 1900."; }
         if (birthDate > new Date()) { return "Date of birth cannot be in the future."; }

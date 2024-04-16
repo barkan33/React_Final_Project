@@ -1,5 +1,3 @@
-import React from "react";
-
 function logoB_W() {
   return (
     <div
