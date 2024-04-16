@@ -19,6 +19,14 @@
   padding: 0 !important;
 }
 
+.navbar-nav:last-child {
+  margin-left: auto;
+}
+
+.navbar-nav {
+  font-size: 1.5rem;
+}
+
 .heroCarousel {
   margin: auto;
   width: 90vw;

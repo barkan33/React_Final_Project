@@ -12,7 +12,7 @@ export default function MyCart({ show, handleClose, cart, removeFromCart }) {
         { field: 'id', headerName: 'ID', width: 70 },
         { field: 'title', headerName: 'Title', width: 150, editable: false, },
         { field: 'author', headerName: 'Author', width: 110, editable: false, },
-        { field: 'price', headerName: 'Price', type: 'number', width: 60, editable: false, },
+        { field: 'price', headerName: '$', type: 'number', width: 60, editable: false, },
         { field: 'quantity', headerName: 'Quantity', type: 'number', width: 70, editable: false, },
         {
             field: 'action', headerName: '', width: 60, renderCell: (params) => (

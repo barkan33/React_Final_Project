@@ -52,7 +52,7 @@ export default function NavBar({ connectedUser, setConnectedUser, user_DB, remov
                     <Navbar.Brand as={Link} to="/"><LogoBW2 height={"7vh"} /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="m-auto" >
+                        <Nav >
                             <Nav.Link as={Link} to="/store">Store</Nav.Link>
                             <Nav.Link as={Link} to="/features">Features</Nav.Link>
                             <Nav.Link as={Link} to="/location">Location</Nav.Link>

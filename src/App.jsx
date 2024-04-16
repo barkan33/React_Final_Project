@@ -36,7 +36,7 @@ function App() {
       publicationDate: "1963-03-01",
       genre: ["Superhero", "Action"],
       price: 6,
-      coverImage: "./src/assets/react.svg",
+      coverImage: "https://cdn.marvel.com/u/prod/marvel/i/mg/9/d0/57c43ae6ec459/clean.jpg",
       stock: 10,
     },
     {
@@ -49,7 +49,7 @@ function App() {
       publicationDate: "1987-02-01",
       genre: ["Superhero", "Crime"],
       price: 12.99,
-      coverImage: "./src/assets/react.svg",
+      coverImage: "https://m.media-amazon.com/images/I/61+hFGCapwL._SL1500_.jpg",
       stock: 5,
     },
     {
@@ -62,7 +62,7 @@ function App() {
       publicationDate: "1986-09-01",
       genre: ["Superhero", "Thriller"],
       price: 19.99,
-      coverImage: "./src/assets/react.svg",
+      coverImage: "https://m.media-amazon.com/images/I/61BvMZbTw9L._SL1000_.jpg",
       stock: 8,
     }, {
       id: 11121,
@@ -74,11 +74,23 @@ function App() {
       publicationDate: "2012-03-14",
       genre: ["Sci-Fi", "Fantasy"],
       price: 9.99,
-      coverImage: "./src/assets/react.svg",
+      coverImage: "https://s3.amazonaws.com/comicgeeks/comics/covers/large-2678528.jpg?1708830976",
       stock: 7,
     },
     {
       id: 13141,
+      title: "The Walking Dead Deluxe",
+      description: "A post-apocalyptic horror comic book series",
+      author: "Robert Kirkman",
+      artist: "Tony Moore",
+      publisher: "Image Comics",
+      publicationDate: "2003-10-08",
+      genre: ["Horror", "Survival"],
+      price: 19.99,
+      coverImage: "https://www.hollywoodreporter.com/wp-content/uploads/2020/07/the_walking_dead_-_publicity_-_embed_6-2020_.jpg?w=928",
+      stock: 4,
+    }, {
+      id: 13142,
       title: "The Walking Dead",
       description: "A post-apocalyptic horror comic book series",
       author: "Robert Kirkman",
@@ -87,7 +99,7 @@ function App() {
       publicationDate: "2003-10-08",
       genre: ["Horror", "Survival"],
       price: 14.99,
-      coverImage: "./src/assets/react.svg",
+      coverImage: "https://www.hollywoodreporter.com/wp-content/uploads/2020/07/the_walking_dead_-_publicity_-_embed_5-2020_.jpg?w=928",
       stock: 12,
     },
     {
@@ -100,7 +112,7 @@ function App() {
       publicationDate: "2014-02-05",
       genre: ["Superhero", "Coming-of-age"],
       price: 3.99,
-      coverImage: "./src/assets/react.svg",
+      coverImage: "https://cdn.marvel.com/u/prod/marvel/i/mg/7/e0/6160bdc11ac10/clean.jpg",
       stock: 15,
     },
     {
@@ -113,7 +125,7 @@ function App() {
       publicationDate: "2016-04-06",
       genre: ["Superhero", "Political"],
       price: 4.99,
-      coverImage: "./src/assets/react.svg",
+      coverImage: "https://cdn.marvel.com/u/prod/marvel/i/mg/9/03/619e63a155950/clean.jpg",
       stock: 20,
     },
     {
@@ -126,7 +138,7 @@ function App() {
       publicationDate: "1994-03-23",
       genre: ["Supernatural", "Action"],
       price: 10.99,
-      coverImage: "./src/assets/react.svg",
+      coverImage: "https://m.media-amazon.com/images/I/612645-lZcL._SL1200_.jpg",
       stock: 6,
     },
     {
@@ -139,7 +151,7 @@ function App() {
       publicationDate: "1989-01-01",
       genre: ["Fantasy", "Horror"],
       price: 15.99,
-      coverImage: "./src/assets/react.svg",
+      coverImage: "https://m.media-amazon.com/images/I/71etcZII5cL._SL1000_.jpg",
       stock: 4,
     },
     {
@@ -152,7 +164,7 @@ function App() {
       publicationDate: "2002-09-18",
       genre: ["Sci-Fi", "Drama"],
       price: 12.99,
-      coverImage: "./src/assets/react.svg",
+      coverImage: "https://m.media-amazon.com/images/I/71lBTGxPOOL._SL1500_.jpg",
       stock: 9,
     },
     {
@@ -165,7 +177,7 @@ function App() {
       publicationDate: "1995-04-01",
       genre: ["Supernatural", "Western"],
       price: 16.99,
-      coverImage: "./src/assets/react.svg",
+      coverImage: "https://m.media-amazon.com/images/I/71DjQ8bWwXL._SL1000_.jpg",
       stock: 5,
     },
     {
@@ -178,7 +190,7 @@ function App() {
       publicationDate: "2002-07-10",
       genre: ["Fantasy", "Mystery"],
       price: 13.99,
-      coverImage: "./src/assets/react.svg",
+      coverImage: "https://m.media-amazon.com/images/I/81YyqrzNDbL._SL1499_.jpg",
       stock: 11,
     },
     {
@@ -191,7 +203,7 @@ function App() {
       publicationDate: "2003-01-22",
       genre: ["Superhero", "Action"],
       price: 9.99,
-      coverImage: "./src/assets/react.svg",
+      coverImage: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1699557764-91kCNDS7ucL.jpg?crop=1xw:1xh;center,top&resize=980:*",
       stock: 8,
     },
     {
@@ -204,7 +216,7 @@ function App() {
       publicationDate: "2014-06-18",
       genre: ["Fantasy", "Music"],
       price: 3.99,
-      coverImage: "./src/assets/react.svg",
+      coverImage: "https://cdn.imagecomics.com/assets/i/releases/7187/the-wicked-the-divine-1_2e9b2f1490.jpg",
       stock: 13,
     },
     {
@@ -217,7 +229,7 @@ function App() {
       publicationDate: "2015-10-07",
       genre: ["Sci-Fi", "Mystery"],
       price: 11.99,
-      coverImage: "./src/assets/react.svg",
+      coverImage: "https://ew.com/thmb/vbb3CkRcNTBnKrGFuc0mzQBMzhw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Papergirls-dfe9b536a36c4d189b5aff86cadc3f92.jpg",
       stock: 6,
     }
   ]);

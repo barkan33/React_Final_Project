@@ -23,7 +23,7 @@ export default function ProductCard({ addToCart, product }) {
         <Card sx={{ maxWidth: 270, margin: "auto", boxShadow: "6px 5px 6px #00000037" }}>
             <CardMedia
                 component="img"
-                height="120"
+                height="180"
                 image={coverImage}
                 alt={title}
             />
