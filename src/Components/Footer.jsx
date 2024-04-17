@@ -1,8 +1,6 @@
 import { Box, Grid, Typography, Link } from '@mui/material';
-import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
-
-
-
+import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 
 
 export default function Footer() {
@@ -61,7 +59,7 @@ export default function Footer() {
                             <FaFacebook size={24} />
                         </Link>
                         <Link href="https://twitter.com/Xmas_Wonderland" target="_blank" rel="noopener" sx={{ mr: 2 }}>
-                            <FaTwitter size={24} />
+                            <FaXTwitter size={24} />
                         </Link>
                         <Link href="https://www.instagram.com/thewonderlandmarket/" target="_blank" rel="noopener">
                             <FaInstagram size={24} />

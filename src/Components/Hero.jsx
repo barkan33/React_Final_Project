@@ -10,7 +10,6 @@ const headingStyle = {
 };
 
 export default function Hero({ products }) {
-
   return (
     <>
       <Carousel className='heroCarousel'>

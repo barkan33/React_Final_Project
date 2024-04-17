@@ -1,12 +1,8 @@
-import { useMemo } from 'react';
-
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
 import { DataGrid } from '@mui/x-data-grid';
 import { Box, IconButton } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-
-
 
 export default function MyCart({ show, handleClose, cart, removeFromCart }) {
     const columns = [
@@ -21,7 +17,12 @@ export default function MyCart({ show, handleClose, cart, removeFromCart }) {
             ),
         }
     ];
+    
     let total = 0;
+    const Sum = () => {
+        total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)
+        return <Offcanvas.Title>Total: ${total.toFixed(2)}</Offcanvas.Title>;
+    }
     return (
 
         <Offcanvas show={show} onHide={handleClose} scroll={true} backdrop={false} style={{ width: "560px", boxShadow: "6px 5px 6px #00000037" }}>
@@ -47,10 +48,7 @@ export default function MyCart({ show, handleClose, cart, removeFromCart }) {
                         }}
                     />
                 </Box>
-                {useMemo(() => {
-                    total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                    return <Offcanvas.Title>Total: ${total.toFixed(2)}</Offcanvas.Title>;
-                }, [cart])}
+                {Sum()}
             </Offcanvas.Body>
         </Offcanvas >
 

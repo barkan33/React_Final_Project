@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.css'
@@ -273,16 +273,19 @@ function App() {
       product.id === id ? { ...product, stock: product.stock + quantity } : product
     ));
   };
+
   const removeUser = (id) => {
     setUser_DB(prevUser_DB =>
       prevUser_DB.filter(user => user.id !== id)
     );
-  }
+  };
+
   const removeProduct = (id) => {
     setProducts(prevProducts =>
       prevProducts.filter(prod => prod.id !== id)
     );
-  }
+  };
+
   useEffect(() => {
     if (connectedUser != null) {
 
@@ -295,20 +298,8 @@ function App() {
 
 
 
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate loading
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);
-
-
-
   return (
     <>
-
       <div id="overlay"><LogoPurple /></div>
       <BrowserRouter>
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
@@ -328,7 +319,6 @@ function App() {
           <Footer />
         </div>
       </BrowserRouter>
-
     </>
   )
 };

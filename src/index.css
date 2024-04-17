@@ -1,6 +1,8 @@
 :root {
     --mainBG: #233142;
     --white: #eeeeff;
+    --sectionBG: #041B29;
+
 }
 
 * {
@@ -13,5 +15,5 @@
 
 body {
     background-color: var(--mainBG);
-  
+
 }

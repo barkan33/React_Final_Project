@@ -1,6 +1,3 @@
-:root {
-  --sectionBG: #041B29;
-}
 
 .sections {
   background-color: var(--sectionBG);
